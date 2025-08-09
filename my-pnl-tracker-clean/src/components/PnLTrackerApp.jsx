@@ -9,6 +9,18 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+// --- SAFE MODE: reset local data if ?reset=1 is in the URL
+useEffect(() => {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("reset") === "1") {
+      localStorage.removeItem(STORAGE_KEY);
+      // force clean state
+      setEntries({});
+    }
+  } catch (_) {}
+}, []);
+
 // --- Helpers ---
 const STORAGE_KEY = "pnl_tracker_entries";
 
