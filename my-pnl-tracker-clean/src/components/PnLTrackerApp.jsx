@@ -31,6 +31,7 @@ const fmtCurrency = (n) => {
   return num.toLocaleString(undefined, {
     style: "currency",
     currency: "USD",
+    
     maximumFractionDigits: 0,
   });
 };
@@ -63,6 +64,9 @@ function generateMonthMatrix(year, month) {
   }
   while (week.length < 7) {
     week.push(null);
+
+    
+    
     if (week.length === 7) {
       matrix.push(week);
       week = [];
@@ -339,7 +343,7 @@ export default function PnLTrackerApp() {
                             const pnl =
                               entry && typeof entry.pnl === "number" ? entry.pnl : null;
                             const bg =
-                              pnl == null
+
                                 ? "bg-gray-50"
                                 : pnl >= 0
                                 ? "bg-green-50"
@@ -401,11 +405,8 @@ export default function PnLTrackerApp() {
                           >
                             {t == null ? "-" : fmtCurrency(t)}
                           </div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-4 p-3 bg-white rounded-md shadow-sm">
-                      <div className="text-xs text-gray-500">Month Total</div>
+ 
+                        div className="text-xs text-gray-500">Month Total</div>
                       <div className="text-xl font-semibold">{fmtCurrency(stats.total)}</div>
                     </div>
                   </div>
@@ -468,6 +469,8 @@ export default function PnLTrackerApp() {
                     className="mt-1 w-full border rounded px-2 py-2"
                     placeholder="e.g. 1234 or -500"
                   />
+
+                  
                   <div className="text-xs text-gray-500 mt-2">
                     Displayed on calendar and included in weekly totals.
                   </div>
@@ -499,9 +502,11 @@ export default function PnLTrackerApp() {
                 </button>
               </div>
             </div>
+
           </div>
         )}
       </div>
     </div>
   );
 }
+
